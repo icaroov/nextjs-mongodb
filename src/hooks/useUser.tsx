@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { createContext, useContext, useState } from "react";
+
 import api from "../config/api";
 
 type UserContextData = {
@@ -19,6 +20,11 @@ type UserContextData = {
 
 type UserContextProps = {
   children: React.ReactNode;
+};
+
+type ErrorResponse = {
+  message: string;
+  success: boolean;
 };
 
 export const UserContext = createContext<UserContextData>(
@@ -44,7 +50,16 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
       setIsLoading(false);
       console.log("Created!");
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
+
+      const errorResponse: ErrorResponse = error.response.data;
+
+      setErrors({
+        helperText: errorResponse.message,
+        error: errorResponse.success,
+      });
+
+      console.error(errorResponse);
     }
   };
 

@@ -8,9 +8,13 @@ dbConnect();
 export type ResponseData = {
   success: boolean;
   data?: any[] | {};
+  message?: string;
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse<ResponseData>) => {
+export default async (
+  req: NextApiRequest,
+  res: NextApiResponse<ResponseData>
+) => {
   const { method } = req;
 
   switch (method) {
@@ -26,6 +30,18 @@ export default async (req: NextApiRequest, res: NextApiResponse<ResponseData>) =
 
     case "POST":
       try {
+        const name: string = req.body.name;
+
+        const nameAlreadyExists = await User.findOne({ name });
+
+        if (nameAlreadyExists) {
+          res.status(403).json({
+            success: false,
+            message: "The name already exists. Try another one.",
+          });
+          return;
+        }
+
         const user = await User.create(req.body);
 
         res.status(201).json({ success: true, data: user });
