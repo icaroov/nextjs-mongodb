@@ -5,6 +5,7 @@ import { Button, CircularProgress, Container } from "@material-ui/core";
 
 import api from "@/src/config/api";
 import Dialog from "@/src/components/Dialog";
+import { useUser } from "@/src/hooks/useUser";
 
 type UserProps = {
   user: {
@@ -14,40 +15,30 @@ type UserProps = {
 
 const User = ({ user }: UserProps) => {
   const [confirm, setConfirm] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+
+  const { deleteUser, isLoading, setIsLoading } = useUser();
 
   const router = useRouter();
 
+  const { id } = router.query;
+
   useEffect(() => {
-    if (isDeleting) {
-      deleteUser();
+    if (isLoading) {
+      deleteUser(id);
     }
-  }, [isDeleting]);
+  }, [isLoading]);
 
   const openDialog = () => setConfirm(true);
   const closeDialog = () => setConfirm(false);
 
-  const deleteUser = async () => {
-    const { id } = router.query;
-
-    try {
-      await api.delete(`/users/${id}`);
-
-      console.log("User deleted!");
-      router.push("/");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleDelete = async () => {
-    setIsDeleting(true);
+    setIsLoading(true);
     closeDialog();
   };
 
   return (
     <Container>
-      {isDeleting ? (
+      {isLoading ? (
         <CircularProgress />
       ) : (
         <>

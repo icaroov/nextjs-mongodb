@@ -32,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
     button: {
       marginRight: theme.spacing(1),
     },
+    card: {
+      display: 'flex',
+      width: '100%'
+    }
   })
 );
 
