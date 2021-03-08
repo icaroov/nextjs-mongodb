@@ -1,15 +1,11 @@
-import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
-import {
-  Button,
-  TextField as MuiTextField,
-  TextFieldProps as MuiTextFieldProps,
-} from "@material-ui/core";
 import React from "react";
+import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
+import { Button, TextField as MuiTextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
-      marginRight: theme.spacing(2),
+      marginBottom: theme.spacing(2),
     },
     container: {
       display: "flex",
@@ -19,6 +15,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     form: {
       display: "flex",
+      flexDirection: "column",
+      maxWidth: "30%",
     },
   })
 );
@@ -64,7 +62,8 @@ const TextField = ({
         placeholder={placeholder}
         value={value}
       />
-      <Button variant="contained" color="primary" type="submit">
+
+      <Button variant="contained" color="primary" type="submit" size="medium">
         {children}
       </Button>
     </form>
