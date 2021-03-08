@@ -38,23 +38,18 @@ const EditUser = ({ user }: EditUserProps) => {
   return (
     <Container>
       <h1>Update User</h1>
-      <div>
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
-          <TextField
-            onSubmit={handleSubmit}
-            helperText={errors.helperText}
-            error={errors.error}
-            onChange={handleChange}
-            label="Name"
-            value={name}
-            placeholder="Edit name"
-          >
-            Update
-          </TextField>
-        )}
-      </div>
+
+      <TextField
+        onSubmit={handleSubmit}
+        helperText={errors.helperText}
+        error={errors.error}
+        onChange={handleChange}
+        label="Name"
+        value={name}
+        placeholder="Edit name"
+      >
+        {isLoading ? <CircularProgress /> : "Update"}
+      </TextField>
     </Container>
   );
 };

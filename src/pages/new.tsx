@@ -23,22 +23,17 @@ const NewUser = () => {
   return (
     <Container>
       <h1>Create User</h1>
-      <div>
-        {isLoading ? (
-          <CircularProgress />
-        ) : (
-          <TextField
-            onSubmit={handleSubmit}
-            onChange={handleChange}
-            helperText={errors.helperText}
-            error={errors.error}
-            label="Name"
-            placeholder="Enter your name"
-          >
-            Create
-          </TextField>
-        )}
-      </div>
+
+      <TextField
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        helperText={errors.helperText}
+        error={errors.error}
+        label="Name"
+        placeholder="Enter your name"
+      >
+        {isLoading ? <CircularProgress color="secondary"/> : "Create"}
+      </TextField>
     </Container>
   );
 };

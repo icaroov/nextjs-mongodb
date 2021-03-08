@@ -25,6 +25,7 @@ const User = ({ user }: UserProps) => {
   useEffect(() => {
     if (isLoading) {
       deleteUser(id);
+      setIsLoading(false);
     }
   }, [isLoading]);
 
@@ -38,16 +39,10 @@ const User = ({ user }: UserProps) => {
 
   return (
     <Container>
-      {isLoading ? (
-        <CircularProgress />
-      ) : (
-        <>
-          <h1>{user.name}</h1>
-          <Button color="secondary" onClick={openDialog}>
-            Delete
-          </Button>
-        </>
-      )}
+      <h1>User: {user.name}</h1>
+      <Button color="secondary" onClick={openDialog}>
+        {isLoading ? <CircularProgress /> : "Delete"}
+      </Button>
 
       <Dialog
         open={confirm}
