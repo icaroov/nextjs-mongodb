@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState } from "react";
 import { createStyles, Theme, makeStyles } from "@material-ui/core/styles";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import {
   Button,
   CircularProgress,

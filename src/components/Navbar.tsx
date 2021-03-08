@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   AppBar,
   Button,
@@ -13,6 +14,10 @@ const useStyles = makeStyles(() =>
       display: "flex",
       justifyContent: "space-between",
     },
+    link: {
+      color: "#fff",
+      textDecoration: "none",
+    },
   })
 );
 
@@ -22,8 +27,16 @@ const Navbar = () => {
     <AppBar position="static">
       <Toolbar className={classes.nav}>
         <IconButton edge="start" color="inherit" aria-label="menu"></IconButton>
-        <Typography variant="h6">Unique URL</Typography>
-        <Button color="inherit">Create User</Button>
+
+        <Typography variant="h6">
+          <Link href="/">
+            <a className={classes.link}>Unique URL</a>
+          </Link>
+        </Typography>
+
+        <Link href="/new">
+          <Button color="inherit">Create User</Button>
+        </Link>
       </Toolbar>
     </AppBar>
   );
