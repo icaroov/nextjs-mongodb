@@ -56,10 +56,8 @@ export const UserContextProvider = ({ children }: UserContextProps) => {
 
       setErrors({
         helperText: errorResponse.message,
-        error: errorResponse.success,
+        error: !errorResponse.success,
       });
-
-      console.error(errorResponse);
     }
   };
 
