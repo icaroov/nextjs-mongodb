@@ -61,7 +61,7 @@ function Home({ users }: User) {
                     View
                   </Button>
                 </Link>
-                <Link href={`/${user._id}`}>
+                <Link href={`/${user._id}/edit`}>
                   <Button variant="contained" color="secondary">
                     Edit
                   </Button>
